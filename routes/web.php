@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ---- Dashboard ----
+
 // ---- Custom routing ----
 Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomePage.index");
 Route::get("/blog", [BlogPage::class, "index"]) -> name("Blog.index");
