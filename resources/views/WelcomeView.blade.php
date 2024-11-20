@@ -112,7 +112,7 @@
 </div>
 
 <script>
-    /* Dark mode javascript deployemnt function */
+    /* Dark mode javascript deployment function */
     let dark_mode_activation = 0
     function dark_mode() {
         if (dark_mode_activation === 0){
