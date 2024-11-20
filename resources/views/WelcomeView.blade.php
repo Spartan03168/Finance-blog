@@ -102,7 +102,7 @@
     <!-- Header integration -->
     <header>Finance blog</header>
     <!-- Nanobots cloaking controller -->
-
+    <button>Nanobot cloaking</button>
     <!-- Integration of button -->
     <button class="toggle-button" onclick="dark_mode()">Dark mode activation</button>
     <!-- Redirect to logistical routing page -->
