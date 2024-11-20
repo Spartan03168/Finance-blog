@@ -109,8 +109,8 @@
     <a href class="logistic-redirect">
         Enter
     </a>
-
 </div>
+
 <script>
     /* Dark mode javascript deployemnt function */
     let dark_mode_activation = 0
@@ -123,7 +123,7 @@
             alert("Dark mode deactivated")
             }
         }
-
 </script>
+
 </body>
 </html>
