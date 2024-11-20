@@ -1,3 +1,4 @@
+<!-- 71 documented errors. Bypass this page. -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
