@@ -19,5 +19,5 @@ class BlogPage extends Controller{
             // Failsafe response
             return view("Blog.index");
             }
+        }
     }
-}
