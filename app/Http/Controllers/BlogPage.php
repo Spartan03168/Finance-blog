@@ -7,12 +7,12 @@ use App\Models\Banks;
 
 class BlogPage extends Controller{
     public function index(){
-        $banks_access = 0;
+        $db_access = 0;
         $clearance_authorization = 0;
-        if ($banks_access === 0) {
+        if ($db_access === 0) {
             // Initial for now until I get the Banks and blogs model integrated
             return view("Blog.index");
-        } elseif ($banks_access === 1) {
+        } elseif ($db_access === 1) {
             // Assuming the database has been properly set up
             $clearance_authorization = 1;
         } else{
