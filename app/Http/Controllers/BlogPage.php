@@ -10,10 +10,14 @@ class BlogPage extends Controller{
         $banks_access = 0;
         $clearance_authorization = 0;
         if ($banks_access === 0) {
+            // Initial for now until I get the Banks and blogs model integrated
             return view("Blog.index");
         } elseif ($banks_access === 1) {
+            // Assuming the database has been properly set up
             $clearance_authorization = 1;
-        }
-
+        } else{
+            // Failsafe response
+            return view("Blog.index");
+            }
     }
 }
