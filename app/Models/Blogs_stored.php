@@ -11,7 +11,4 @@ class Blogs_stored extends Model{
     protected $casts = [
         "date_and_time_of_upload" => "datetime",
         ];
-    public static function postExtractionProtocol(){
-        //
-        }
     }

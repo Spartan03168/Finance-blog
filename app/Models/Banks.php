@@ -10,7 +10,4 @@ class Banks extends Model{
     protected $table = "banks";
     protected $fillable = ["bank_name","headquarters", "number_of_branches", "countries_with_branches"];
 
-    public static function banksDataExtraction(){
-        //
-        }
     }
