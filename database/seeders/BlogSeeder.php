@@ -7,8 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class BlogSeeder extends Seeder
-{
+class BlogSeeder extends Seeder {
     /**
      * Run the database seeds.
      */
@@ -22,9 +21,9 @@ class BlogSeeder extends Seeder
         // File reading
         $data = array_map('str_getcsv', file($csvFileTracked));
         $headers_detected = array_shift($data);
+        // Loop to inject the data
         foreach ($data as $row){
             $row = array_combine($headers_detected, $row);
-
             // Verification for all fields
             if (!isset($row['Post title'], $row['Content'], $row['Date and time of upload'])) {
                 $this->command->warn("Row skipped due to missing fields: ".implode(", ",$row));
@@ -40,4 +39,4 @@ class BlogSeeder extends Seeder
         // Confirmation message
         $this->command->info("Blog posts table seeded.");
         }
-}
+    }
