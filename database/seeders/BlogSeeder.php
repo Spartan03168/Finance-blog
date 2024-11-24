@@ -24,11 +24,7 @@ class BlogSeeder extends Seeder {
         // Loop to inject the data
         foreach ($data as $row){
             $row = array_combine($headers_detected, $row);
-            // Verification for all fields
-            if (!isset($row['Post title'], $row['Content'], $row['Date and time of upload'])) {
-                $this->command->warn("Row skipped due to missing fields: ".implode(", ",$row));
-                continue;
-                }
+
             // Transfer into database
             DB::table("blogs")->insert([
                 "title" => $row["Post title"],
