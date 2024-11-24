@@ -63,15 +63,15 @@
             return {
                 turncated: content_injection.substring(0,lengt_limit) + "...",
                 full: content_injection
-            };
+                };
         } else {
             // If not it has a pasthrough effect
             return {
                 turncated: content_injection,
                 full: content_injection
-            };
+                };
+            }
         }
-    }
 
     // Simulated data. Prep for full overwrite. with the new database format.
     const blogs = [
@@ -84,7 +84,7 @@
         {title: 'Third Blog Post',
             date: '2023-11-23',
             content: 'This is the content of the third blog post.'}
-    ];
+        ];
     // Posts render system
     const blog_containment = document.getElementById("blog-container");
     if (blogs.length > 0) {
