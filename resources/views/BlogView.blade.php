@@ -73,7 +73,7 @@
         }
     }
 
-    // Simulated data
+    // Simulated data. Prep for full overwrite. with the new database format.
     const blogs = [
         {title: 'First Blog Post',
             date: '2023-11-21',

@@ -106,7 +106,7 @@
     <!-- Integration of button -->
     <button class="toggle-button" onclick="dark_mode()">Dark mode activation</button>
     <!-- Redirect to logistical routing page -->
-    <a href class="logistic-redirect">
+    <a href="BlogView.blade.php" class="logistic-redirect">
         Enter
     </a>
 </div>
