@@ -11,10 +11,10 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->string("Bank name");
-            $table->string("Headquarters");
-            $table->string("Number of branches");
-            $table->string("Countries with branches");
+            $table->string("bank_name");
+            $table->string("headquarters");
+            $table->integer("number_of_branches");
+            $table->integer("countries_with_branches");
             $table->timestamps();
             });
         }

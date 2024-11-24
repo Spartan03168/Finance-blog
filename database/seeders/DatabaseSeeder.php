@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder{
             ]);
         // --- Blog seeder protocol ---
         $this->call(BlogSeeder::class);
+        $this->call(BankSeeder::class);
         }
     }
