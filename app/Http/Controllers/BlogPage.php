@@ -11,17 +11,17 @@ class BlogPage extends Controller{
         $db_access = 1;
         if ($db_access === 0) {
             // Initial for now until I get the Banks and blogs model integrated
-            return view("Blog.index");
+            return view("BlogView");
         } elseif ($db_access === 1) {
             // Assuming the database has been properly set up
             // Fetching bank data
             $bank_data = Banks::all();
             $posts_data = Blogs_stored::orderBy('date_and_time_of_upload', 'desc')->get();
             // Return process
-            return view('Blog.index', compact('bank_data', 'posts_data'));
+            return view('BlogView', compact('bank_data', 'posts_data'));
         } else{
             // Failsafe response
-            return view("Blog.index");
+            return view("BlogView");
             }
         }
     }
