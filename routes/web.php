@@ -18,10 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
+require __DIR__.'/auth.php';
 
 // ---- Custom routing ----
 Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomePage.index");
 Route::get("/blog", [BlogPage::class, "index"]) -> name("Blog.index");
 // -----------------------
-
-require __DIR__.'/auth.php';
