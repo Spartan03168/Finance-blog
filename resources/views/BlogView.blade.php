@@ -77,22 +77,29 @@
                 };
             }
         }
-    // Simulation mode activation
-    const sim_mode = 1
+
     // Real DB data
     const real_bank_db_data = @json($bank_data);
     const real_blogs = @json($posts_data);
     // Simulated data
-    const bank_db_data = [
+    let bank_db_data = [
         { bank_name: "Global Trust Bank", headquarters: "New York, USA", number_of_branches: 601, countries_with_branches: 7 },
         { bank_name: "Pinnacle Finance Group", headquarters: "London, UK", number_of_branches: 701, countries_with_branches: 9 },
         { bank_name: "Unity Banking Corporation", headquarters: "Sydney, Australia", number_of_branches: 665, countries_with_branches: 4 },
     ];
-    const blogs = [
+    let blogs = [
         { title: "First Blog Post", date: "2023-11-21", content: "This is the content of the first blog post." },
         { title: "Second Blog Post", date: "2023-11-22", content: "This is the content of the second blog post." },
         { title: "Third Blog Post", date: "2023-11-23", content: "This is the content of the third blog post." },
     ];
+
+    // Simulation mode activation
+    const sim_mode = 0
+    // Real data injection system
+    if (sim_mode === 0) {
+        bank_db_data = real_bank_db_data
+        blogs = real_blogs
+        }
 
     // --- Bank container ---
     const bank_container = document.getElementById("bank-container");
