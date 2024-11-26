@@ -56,6 +56,7 @@
 <body>
 <button class="status-button" id="status-button">Not logged in</button>
 <h1>Financial Blog</h1>
+<div id="bank-container"></div>
 <div id="blog-container"></div>
 <!-- Javascript deployment system -->
 <script>
@@ -81,68 +82,17 @@
     // Real DB data
     const real_bank_db_data = @json($bank_data);
     const real_blogs = @json($posts_data);
-    // Simulated bank data
-    if (sim_mode === 1) {
-        // Simulated bank and posts data
-        const bank_db_data = [
-            { bank_name: "Global Trust Bank",
-                headquarters: "New York, USA",
-                number_of_branches: 601,
-                countries_with_branches: 7 },
-            { bank_name: "Pinnacle Finance Group",
-                headquarters: "London, UK",
-                number_of_branches: 701,
-                countries_with_branches: 9 },
-            { bank_name: "Unity Banking Corporation",
-                headquarters: "Sydney, Australia",
-                number_of_branches: 665,
-                countries_with_branches: 4 }
-        ];
-        //---------------
-        const blogs = [
-            {title: 'First Blog Post',
-                date: '2023-11-21',
-                content: 'This is the content of the first blog post.'},
-            {title: 'Second Blog Post',
-                date: '2023-11-22',
-                content: 'This is the content of the second blog post.'},
-            {title: 'Third Blog Post',
-                date: '2023-11-23',
-                content: 'This is the content of the third blog post.'}
-        ];
-    } else if (sim_mode === 0){
-        // Real database data injection process
-        const bank_db_data = real_bank_db_data
-        const blogs = real_blogs
-    } else {
-        // Simulated bank and posts data
-        const bank_db_data = [
-            { bank_name: "Global Trust Bank",
-                headquarters: "New York, USA",
-                number_of_branches: 601,
-                countries_with_branches: 7 },
-            { bank_name: "Pinnacle Finance Group",
-                headquarters: "London, UK",
-                number_of_branches: 701,
-                countries_with_branches: 9 },
-            { bank_name: "Unity Banking Corporation",
-                headquarters: "Sydney, Australia",
-                number_of_branches: 665,
-                countries_with_branches: 4 }
-            ];
-        //---------------
-        const blogs = [
-            {title: 'First Blog Post',
-                date: '2023-11-21',
-                content: 'This is the content of the first blog post.'},
-            {title: 'Second Blog Post',
-                date: '2023-11-22',
-                content: 'This is the content of the second blog post.'},
-            {title: 'Third Blog Post',
-                date: '2023-11-23',
-                content: 'This is the content of the third blog post.'}
-            ];
-        }
+    // Simulated data
+    const bank_db_data = [
+        { bank_name: "Global Trust Bank", headquarters: "New York, USA", number_of_branches: 601, countries_with_branches: 7 },
+        { bank_name: "Pinnacle Finance Group", headquarters: "London, UK", number_of_branches: 701, countries_with_branches: 9 },
+        { bank_name: "Unity Banking Corporation", headquarters: "Sydney, Australia", number_of_branches: 665, countries_with_branches: 4 },
+    ];
+    const blogs = [
+        { title: "First Blog Post", date: "2023-11-21", content: "This is the content of the first blog post." },
+        { title: "Second Blog Post", date: "2023-11-22", content: "This is the content of the second blog post." },
+        { title: "Third Blog Post", date: "2023-11-23", content: "This is the content of the third blog post." },
+    ];
 
     // --- Bank container ---
     const bank_container = document.getElementById("bank-container");
@@ -150,53 +100,19 @@
     if (bank_db_data.length > 0) {
         // Deployment loop
         bank_db_data.forEach(bank => {
-            // Horizontal bar
-            const bank_viewing_bar = document.createElement("div");
-            bank_viewing_bar.className = "bank-bar";
-            bank_viewing_bar.style.border = "1px solid #ccc";
-            bank_viewing_bar.style.padding = "10px";
-            bank_viewing_bar.style.marginBottom = "15px";
-            bank_viewing_bar.style.backgroundColor = "#eef";
-            bank_viewing_bar.style.display = "flex";
-            bank_viewing_bar.style.alignItems = "center";
-            bank_viewing_bar.style.cursor = "pointer";
-            // -> Display bank name <-
-            const bank_name = document.createElement("span");
-            bank_name.textContent = bank.bank_name;
-            bank_name.style.flex = "1";
-            // -> Expandable extra details <-
-            const toggle_button = document.createElement("button");
-            toggle_button.textContent = "Details";
-            toggle_button.style.cursor = "pointer";
-            toggle_button.style.marginLeft = "px";
-            // -> Details container <-
-            const bank_details = document.createElement("div");
-            bank_details.style.display = "none";
-            bank_details.style.marginTop = "10px";
-            bank_details.style.borderTop = "1px solid #ddd";
-            bank_details.style.paddingTop = "10px";
-            // Internal detailing HTML
-            bank_details.innerHTML = `
-            <p><strong>Headquarters:</strong> ${bank.headquarters}</p>
-            <p><strong>Number of Branches:</strong> ${bank.number_of_branches}</p>
-            <p><strong>Countries with Branches:</strong> ${bank.countries_with_branches}</p>
-            `;
-            // Button toggle to show or hide details
-            toggle_button.addEventListener("click", () =>{
-                if (bank_details.style.display === "none") {
-                    bank_details.style.display = "block";
-                    toggle_button.textContent = "Collapse";
-                } else {
-                    bank_details.style.display = "none";
-                    toggle_button.textContent = "Details";
-                    }
-                })
-            // Append elements
-            bank_viewing_bar.appendChild(bank_name);
-            bank_viewing_bar.appendChild(toggle_button);
-            bank_container.appendChild(bank_viewing_bar);
-            bank_container.appendChild(bank_details);
-        });
+            const bankInfo = `
+                    <div class="bank-bar">
+                        <span>${bank.bank_name}</span>
+                        <button onclick="toggleDetails(this)" style="margin-left: auto;">Details</button>
+                        <div class="bank-details" style="display: none; margin-top: 10px;">
+                            <p><strong>Headquarters:</strong> ${bank.headquarters}</p>
+                            <p><strong>Number of Branches:</strong> ${bank.number_of_branches}</p>
+                            <p><strong>Countries with Branches:</strong> ${bank.countries_with_branches}</p>
+                        </div>
+                    </div>
+                `;
+            bank_container.innerHTML += bankInfo;
+            });
     } else {
         const failsafe_message = document.createElement("p");
         failsafe_message.textContent = "No banks available at this time.";
@@ -208,62 +124,23 @@
     // Posts render system
     const blog_containment = document.getElementById("blog-container");
     if (blogs.length > 0) {
-        blogs.forEach(
-            blog => {
-                //Blog post components elements: Sequence => Post, title, content
-                //Post
-                const blog_post = document.createElement("div");
-                blog_post.className = "blog-post";
-                blog_post.style.border = "1px soliid #ddd";
-                blog_post.style.padding = "15px";
-                blog_post.style.marginBottom = "20px";
-                blog_post.style.borderRadius = "5px";
-                blog_post.style.backgroundColor = "#f9f9f9";
-                // Title
-                const blog_title = document.createElement("div");
-                blog_title.className = 'blog-title';
-                blog_title.textContent = blog.title;
-                // Content
-                // --> Turnicated content <--
-                const {turncated, full} = content_turnicator(blog.content, 100);
-                // --------------------------
-                const blog_content = document.createElement("div")
-                blog_content.className = "blog-content";
-                blog_content.textContent =  turncated;
-                // Button component
-                const toggle_button = document.createElement("button");
-                toggle_button.textContent = "Read more";
-                toggle_button.style.cursor = "pointer";
-                toggle_button.style.marginTop = "10px";
-                toggle_button.addEventListener("click", () => {
-                    if (blog_content.textContent === turncated){
-                        blog_content.textContent = full;
-                        toggle_button.textContent = "Read less";
-                    } else{
-                        blog_content.textContent = turncated;
-                        toggle_button.textContent = "Read more";
-                        }
-                    });
-
-                // Meta data
-                const blog_meta = document.createElement("div");
-                blog_meta.className = "blog-meta";
-                blog_meta.textContent = `Posted on: ${blog.date}`;
-
-                // Append elements to post container. Sequence => Title, content, metadata
-                blog_post.appendChild(blog_title);
-                blog_post.appendChild(blog_content);
-                if (blog.content.length > 100) blog_post.appendChild(toggle_button);
-                blog_post.appendChild(blog_meta);
-                // Append to container
-                blog_containment.appendChild(blog_post);
-                });
+        blogs.forEach(blog => {
+            const blogInfo = `
+                    <div class="blog-post">
+                        <h2 class="blog-title">${blog.title}</h2>
+                        <p class="blog-meta">Posted on: ${blog.date}</p>
+                        <p class="blog-content">${blog.content}</p>
+                    </div>
+                `;
+            blog_containment.innerHTML += blogInfo;
+            });
     } else {
         const noPostMessage = document.createElement("p");
-        noPostMessage.textContent = "No blog posts availible at this time.";
+        noPostMessage.textContent = "No blog posts available at this time.";
         blog_containment.appendChild(noPostMessage);
         }
 </script>
+<!-- Bank containment. <div id="bank-container"></div>, <div id="blog-container"></div>-->
 
 </body>
 </html>
