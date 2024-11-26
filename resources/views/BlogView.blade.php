@@ -65,21 +65,55 @@
         if (content_injection.length > length_limit) {
             // If the length is longer it adds a turniquate
             return {
-                turncated: content_injection.substring(0,length_limit) + "...",
+                turincated: content_injection.substring(0,length_limit) + "...",
                 full: content_injection
                 };
         } else {
-            // If not it has a pasthrough effect
+            // If not it has a pass through effect
             return {
-                turncated: content_injection,
+                turincated: content_injection,
                 full: content_injection
                 };
             }
         }
+    // Simulation mode activation
+    const sim_mode = 1
+    // Simulated bank data
+    const bank_db_data = [
+        { bank_name: "Global Trust Bank",
+            headquarters: "New York, USA",
+            number_of_branches: 601,
+            countries_with_branches: 7 },
+        { bank_name: "Pinnacle Finance Group",
+            headquarters: "London, UK",
+            number_of_branches: 701,
+            countries_with_branches: 9 },
+        { bank_name: "Unity Banking Corporation",
+            headquarters: "Sydney, Australia",
+            number_of_branches: 665,
+            countries_with_branches: 4 }
+        ];
+    // --- Bank container ---
+    const bank_container = document.getElementById("bank-container");
+    // -> Deployment of bank data visual <-
+    if (bank_db_data.length > 0) {
+        // Deployment loop
+        bank_db_data.forEach(bank => {
+            // Horizontal bar
+            const bank_viewing_bar = document.createElement("div");
+            bank_viewing_bar.className = "bank-bar";
+            bank_viewing_bar.style.border = "1px solid #ccc";
+            bank_viewing_bar.style.padding = "10px";
 
-    // Bank data
-    const bank_db_data = [];
-    // Simulated data. Prep for full overwrite. with the new database format.
+
+        });
+    } else {
+        const failsafe_message = document.createElement("p");
+        failsafe_message.textContent = "No banks available at this time.";
+        bank_container.appendChild(failsafe_message)
+        }
+    //------------------------------------------------------------------------
+    // Simulated blog data.
     const blogs = [
         {title: 'First Blog Post',
             date: '2023-11-21',
