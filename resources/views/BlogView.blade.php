@@ -9,28 +9,10 @@
         body {
             font-family: Arial, 'Times New Roman', Times, serif;
             margin: 20px;
-        }
+            }
         h1 {
             color: #333;
-        }
-        /* Blog styling */
-        .blog-post {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .blog-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .blog-content {
-            color: #555;
-        }
-        .blog-meta {
-            font-size: 0.9em;
-            color: #777;
-        }
+            }
 
         /* Status button styling */
         .status-button {
@@ -43,10 +25,10 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
+            }
         .status-button:hover {
             background-color: #0056b3;
-        }
+            }
     </style>
 </head>
 <body>
@@ -56,12 +38,12 @@
 <!-- Javascript deployment system -->
 <script>
     // Length turnicator
-    function content_turnicator(content_injection, lengt_limit) {
+    function content_turnicator(content_injection, length_limit) {
         // Checks the length of the content
-        if (content_injection.length > lengt_limit) {
+        if (content_injection.length > length_limit) {
             // If the length is longer it adds a turniquate
             return {
-                turncated: content_injection.substring(0,lengt_limit) + "...",
+                turncated: content_injection.substring(0,length_limit) + "...",
                 full: content_injection
                 };
         } else {
@@ -90,7 +72,7 @@
     if (blogs.length > 0) {
         blogs.forEach(
             blog => {
-                //Blog post componets elements: Seqience => Post, title, content
+                //Blog post components elements: Sequence => Post, title, content
                 //Post
                 const blog_post = document.createElement("div");
                 blog_post.className = "blog-post";
