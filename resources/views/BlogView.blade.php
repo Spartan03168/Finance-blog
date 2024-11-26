@@ -78,21 +78,72 @@
         }
     // Simulation mode activation
     const sim_mode = 1
+    // Real DB data
+    const real_bank_db_data = @json($bank_data);
+    const real_blogs = @json($posts_data);
     // Simulated bank data
-    const bank_db_data = [
-        { bank_name: "Global Trust Bank",
-            headquarters: "New York, USA",
-            number_of_branches: 601,
-            countries_with_branches: 7 },
-        { bank_name: "Pinnacle Finance Group",
-            headquarters: "London, UK",
-            number_of_branches: 701,
-            countries_with_branches: 9 },
-        { bank_name: "Unity Banking Corporation",
-            headquarters: "Sydney, Australia",
-            number_of_branches: 665,
-            countries_with_branches: 4 }
+    if (sim_mode === 1) {
+        // Simulated bank and posts data
+        const bank_db_data = [
+            { bank_name: "Global Trust Bank",
+                headquarters: "New York, USA",
+                number_of_branches: 601,
+                countries_with_branches: 7 },
+            { bank_name: "Pinnacle Finance Group",
+                headquarters: "London, UK",
+                number_of_branches: 701,
+                countries_with_branches: 9 },
+            { bank_name: "Unity Banking Corporation",
+                headquarters: "Sydney, Australia",
+                number_of_branches: 665,
+                countries_with_branches: 4 }
         ];
+        //---------------
+        const blogs = [
+            {title: 'First Blog Post',
+                date: '2023-11-21',
+                content: 'This is the content of the first blog post.'},
+            {title: 'Second Blog Post',
+                date: '2023-11-22',
+                content: 'This is the content of the second blog post.'},
+            {title: 'Third Blog Post',
+                date: '2023-11-23',
+                content: 'This is the content of the third blog post.'}
+        ];
+    } else if (sim_mode === 0){
+        // Real database data injection process
+        const bank_db_data = real_bank_db_data
+        const blogs = real_blogs
+    } else {
+        // Simulated bank and posts data
+        const bank_db_data = [
+            { bank_name: "Global Trust Bank",
+                headquarters: "New York, USA",
+                number_of_branches: 601,
+                countries_with_branches: 7 },
+            { bank_name: "Pinnacle Finance Group",
+                headquarters: "London, UK",
+                number_of_branches: 701,
+                countries_with_branches: 9 },
+            { bank_name: "Unity Banking Corporation",
+                headquarters: "Sydney, Australia",
+                number_of_branches: 665,
+                countries_with_branches: 4 }
+            ];
+        //---------------
+        const blogs = [
+            {title: 'First Blog Post',
+                date: '2023-11-21',
+                content: 'This is the content of the first blog post.'},
+            {title: 'Second Blog Post',
+                date: '2023-11-22',
+                content: 'This is the content of the second blog post.'},
+            {title: 'Third Blog Post',
+                date: '2023-11-23',
+                content: 'This is the content of the third blog post.'}
+            ];
+        }
+
     // --- Bank container ---
     const bank_container = document.getElementById("bank-container");
     // -> Deployment of bank data visual <-
@@ -153,17 +204,7 @@
         }
     //------------------------------------------------------------------------
     // Simulated blog data.
-    const blogs = [
-        {title: 'First Blog Post',
-            date: '2023-11-21',
-            content: 'This is the content of the first blog post.'},
-        {title: 'Second Blog Post',
-            date: '2023-11-22',
-            content: 'This is the content of the second blog post.'},
-        {title: 'Third Blog Post',
-            date: '2023-11-23',
-            content: 'This is the content of the third blog post.'}
-        ];
+
     // Posts render system
     const blog_containment = document.getElementById("blog-container");
     if (blogs.length > 0) {
