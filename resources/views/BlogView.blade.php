@@ -13,7 +13,29 @@
         h1 {
             color: #333;
             }
+        /* Javascript styling section */
+        .blog-post {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
 
+        .blog-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .blog-content {
+            color: #555;
+        }
+
+        .blog-meta {
+            font-size: 0.9em;
+            color: #777;
+        }
         /* Status button styling */
         .status-button {
             position: absolute;
@@ -55,6 +77,8 @@
             }
         }
 
+    // Bank data
+    const bank_db_data = [];
     // Simulated data. Prep for full overwrite. with the new database format.
     const blogs = [
         {title: 'First Blog Post',
@@ -76,6 +100,11 @@
                 //Post
                 const blog_post = document.createElement("div");
                 blog_post.className = "blog-post";
+                blog_post.style.border = "1px soliid #ddd";
+                blog_post.style.padding = "15px";
+                blog_post.style.marginBottom = "20px";
+                blog_post.style.borderRadius = "5px";
+                blog_post.style.backgroundColor = "#f9f9f9";
                 // Title
                 const blog_title = document.createElement("div");
                 blog_title.className = 'blog-title';
@@ -99,8 +128,8 @@
                     } else{
                         blog_content.textContent = turncated;
                         toggle_button.textContent = "Read more";
-                    }
-                });
+                        }
+                    });
 
                 // Meta data
                 const blog_meta = document.createElement("div");
@@ -114,12 +143,12 @@
                 blog_post.appendChild(blog_meta);
                 // Append to container
                 blog_containment.appendChild(blog_post);
-            });
+                });
     } else {
         const noPostMessage = document.createElement("p");
         noPostMessage.textContent = "No blog posts availible at this time.";
         blog_containment.appendChild(noPostMessage);
-    }
+        }
 </script>
 
 </body>
