@@ -96,6 +96,21 @@
     </style>
 </head>
 <body>
+
+<script>
+    /* Dark mode javascript deployment function */
+    let dark_mode_activation = 0
+    function dark_mode() {
+        if (dark_mode_activation === 0){
+            dark_mode_activation = 1
+            alert("Dark mode active")
+        } else {
+            dark_mode_activation = 0
+            alert("Dark mode deactivated")
+        }
+    }
+</script>
+
 <div>
     <!-- Overlay integration point -->
     <div class="overlay"></div>
@@ -110,20 +125,6 @@
         Enter
     </a>
 </div>
-
-<script>
-    /* Dark mode javascript deployment function */
-    let dark_mode_activation = 0
-    function dark_mode() {
-        if (dark_mode_activation === 0){
-            dark_mode_activation = 1
-            alert("Dark mode active")
-        } else {
-            dark_mode_activation = 0
-            alert("Dark mode deactivated")
-            }
-        }
-</script>
 
 </body>
 </html>
