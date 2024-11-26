@@ -104,8 +104,47 @@
             bank_viewing_bar.className = "bank-bar";
             bank_viewing_bar.style.border = "1px solid #ccc";
             bank_viewing_bar.style.padding = "10px";
-
-
+            bank_viewing_bar.style.marginBottom = "15px";
+            bank_viewing_bar.style.backgroundColor = "#eef";
+            bank_viewing_bar.style.display = "flex";
+            bank_viewing_bar.style.alignItems = "center";
+            bank_viewing_bar.style.cursor = "pointer";
+            // -> Display bank name <-
+            const bank_name = document.createElement("span");
+            bank_name.textContent = bank.bank_name;
+            bank_name.style.flex = "1";
+            // -> Expandable extra details <-
+            const toggle_button = document.createElement("button");
+            toggle_button.textContent = "Details";
+            toggle_button.style.cursor = "pointer";
+            toggle_button.style.marginLeft = "px";
+            // -> Details container <-
+            const bank_details = document.createElement("div");
+            bank_details.style.display = "none";
+            bank_details.style.marginTop = "10px";
+            bank_details.style.borderTop = "1px solid #ddd";
+            bank_details.style.paddingTop = "10px";
+            // Internal detailing HTML
+            bank_details.innerHTML = `
+            <p><strong>Headquarters:</strong> ${bank.headquarters}</p>
+            <p><strong>Number of Branches:</strong> ${bank.number_of_branches}</p>
+            <p><strong>Countries with Branches:</strong> ${bank.countries_with_branches}</p>
+            `;
+            // Button toggle to show or hide details
+            toggle_button.addEventListener("click", () =>{
+                if (bank_details.style.display === "none") {
+                    bank_details.style.display = "block";
+                    toggle_button.textContent = "Collapse";
+                } else {
+                    bank_details.style.display = "none";
+                    toggle_button.textContent = "Details";
+                    }
+                })
+            // Append elements
+            bank_viewing_bar.appendChild(bank_name);
+            bank_viewing_bar.appendChild(toggle_button);
+            bank_container.appendChild(bank_viewing_bar);
+            bank_container.appendChild(bank_details);
         });
     } else {
         const failsafe_message = document.createElement("p");
