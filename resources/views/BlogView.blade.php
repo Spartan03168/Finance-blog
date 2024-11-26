@@ -8,34 +8,23 @@
         /* Baseline styling */
         body {
             font-family: Arial, 'Times New Roman', Times, serif;
-            margin: 20px;
-            }
-        h1 {
-            color: #333;
-            }
+            margin: 20px;}
+        h1 {color: #333;}
         /* Javascript styling section */
         .blog-post {
             border: 1px solid #ddd;
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
+            background-color: #f9f9f9;}
         .blog-title {
             font-size: 1.5em;
             margin-bottom: 10px;
-            color: #333;
-        }
-
-        .blog-content {
-            color: #555;
-        }
-
+            color: #333;}
+        .blog-content {color: #555;}
         .blog-meta {
             font-size: 0.9em;
-            color: #777;
-        }
+            color: #777;}
         /* Status button styling */
         .status-button {
             position: absolute;
@@ -46,11 +35,8 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
-            }
-        .status-button:hover {
-            background-color: #0056b3;
-            }
+            cursor: pointer;}
+        .status-button:hover {background-color: #0056b3;}
     </style>
 </head>
 <body>
@@ -77,7 +63,6 @@
                 };
             }
         }
-
     // Real DB data
     const real_bank_db_data = @json($bank_data);
     const real_blogs = @json($posts_data);
@@ -85,14 +70,11 @@
     let bank_db_data = [
         { bank_name: "Global Trust Bank", headquarters: "New York, USA", number_of_branches: 601, countries_with_branches: 7 },
         { bank_name: "Pinnacle Finance Group", headquarters: "London, UK", number_of_branches: 701, countries_with_branches: 9 },
-        { bank_name: "Unity Banking Corporation", headquarters: "Sydney, Australia", number_of_branches: 665, countries_with_branches: 4 },
-    ];
+        { bank_name: "Unity Banking Corporation", headquarters: "Sydney, Australia", number_of_branches: 665, countries_with_branches: 4 }];
     let blogs = [
         { title: "First Blog Post", date: "2023-11-21", content: "This is the content of the first blog post." },
         { title: "Second Blog Post", date: "2023-11-22", content: "This is the content of the second blog post." },
-        { title: "Third Blog Post", date: "2023-11-23", content: "This is the content of the third blog post." },
-    ];
-
+        { title: "Third Blog Post", date: "2023-11-23", content: "This is the content of the third blog post." }];
     // Simulation mode activation
     const sim_mode = 0
     // Real data injection system
@@ -100,7 +82,6 @@
         bank_db_data = real_bank_db_data
         blogs = real_blogs
         }
-
     // --- Bank container ---
     const bank_container = document.getElementById("bank-container");
     // -> Deployment of bank data visual <-
@@ -147,7 +128,6 @@
         blog_containment.appendChild(noPostMessage);
         }
 </script>
-<!-- Bank containment. <div id="bank-container"></div>, <div id="blog-container"></div>-->
 
 </body>
 </html>
