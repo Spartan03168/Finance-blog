@@ -121,7 +121,23 @@
                     </div>
                 `;
             blog_containment.innerHTML += blogInfo;
+            // Edit button
+            const edit_button = document.createElement("button");
+            edit_button.textContent = "Edit";
+            edit_button.className = "edit-button";
+            edit_button.style.marginTop = "10px";
+            edit_button.style.cursor = "pointer";
+            // Add listener
+            edit_button.addEventListener("click", () => {
+                // Populate the form with the selected blog's data
+                document.getElementById("blog-id").value = blog.id; // Hidden input for blog ID
+                document.getElementById("title").value = blog.title; // Title input
+                document.getElementById("content").value = blog.content; // Content textarea
+                document.getElementById("date").value = blog.date.replace(" ", "T");
             });
+            // You forgot to append the button here!
+            blog_containment.appendChild(edit_button);
+        });
     } else {
         const noPostMessage = document.createElement("p");
         noPostMessage.textContent = "No blog posts available at this time.";
