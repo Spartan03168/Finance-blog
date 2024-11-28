@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\IntroPage;
 use \App\Http\controllers\BlogPage;
+use \App\Http\controllers\PostEditor;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,4 +24,5 @@ require __DIR__.'/auth.php';
 // ---- Custom routing ----
 Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomePage.index");
 Route::get("/blog", [BlogPage::class, "index"]) -> name("Blog.index");
+Route::get("/edit_mode", [PostEditor::class, "edit"]) -> name("PostEditor.edit");
 // -----------------------
