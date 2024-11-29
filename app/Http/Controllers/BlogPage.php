@@ -15,7 +15,7 @@ class BlogPage extends Controller{
             return view("BlogView");
         } elseif ($db_access === 1) {
             // --- Caching process of posts data ---
-            $cache_mode = 0;
+            $cache_mode = 1;
             // Caching activation selection block
             if ($cache_mode === 0){
                 $bank_data = Banks::all();

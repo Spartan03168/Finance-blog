@@ -1,9 +1,13 @@
 Progress:
     - Views                                                <= DONE
     - Models                                               <= DONE
-        - Link both models                                 <=
+        - Link both models                                 <= QUEUED
     - Caching                                              <= DONE
     - Authorization                                        <= DONE
     - Email services                                       <=
         - Link to successfully creating  your account      <=
-    - CRUD                                                 <=
+    - CRUD                                                 <= QUEUED
+
+Notes:
+    - Up next is model linking and CRUD
+    - Right after that set up the email service to send an update to my personal email.
