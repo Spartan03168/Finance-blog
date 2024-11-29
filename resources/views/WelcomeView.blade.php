@@ -115,13 +115,15 @@
     <!-- Overlay integration point -->
     <div class="overlay"></div>
     <!-- Header integration -->
-    <header>Finance blog</header>
+    <header>
+        Finance blog
+    </header>
     <!-- Nanobots cloaking controller -->
     <button>Nanobot cloaking</button>
     <!-- Integration of button -->
     <button class="toggle-button" onclick="dark_mode()">Dark mode activation</button>
     <!-- Redirect to logistical routing page -->
-    <a href="{{ route('Blog.index') }}" class="logistic-redirect">
+    <a href="{{ route('Intermediate.index') }}" class="logistic-redirect">
         Enter
     </a>
 </div>
