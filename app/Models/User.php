@@ -46,4 +46,12 @@ class User extends Authenticate
             'password' => 'hashed',
         ];
     }
-}
+    // Access control components
+    public function isAdmin(): bool {
+        return $this->role === 'admin';
+        }
+
+    public function isUser(): bool {
+        return $this->role === 'user';
+        }
+    }

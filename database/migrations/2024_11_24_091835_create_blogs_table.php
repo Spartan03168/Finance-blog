@@ -12,11 +12,12 @@ return new class extends Migration {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text("content");
-            $table->timestamp("date");
-            $table->string("bank_id");
+            $table->text('content');
+            $table->timestamp('date');
+            $table->unsignedBigInteger('bank_id'); // Foreign key for banks
+            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
             $table->timestamps();
-            });
+        });
         }
 
     /**

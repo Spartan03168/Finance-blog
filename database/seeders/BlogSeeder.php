@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Banks;
 use Illuminate\Support\Facades\Storage;
 
 class BlogSeeder extends Seeder {
@@ -25,12 +26,19 @@ class BlogSeeder extends Seeder {
         foreach ($data as $row){
             $row = array_combine($headers_detected, $row);
 
+            // Fetch bank by name
+            $bank = Banks::where('bank_name', $row['Bank connection'])->first();
+            if (!$bank) {
+                $this->command->error("Bank not found: " . $row['Bank connection']);
+                continue;
+                }
+
             // Transfer into database
             DB::table("blogs")->insert([
                 "title" => $row["Post title"],
-                "content" => $row["Content"],
                 "date" => $row["Date and time of upload"],
-                "bank_id" => $row["Bank connection"],
+                "content" => $row["Content"],
+                "bank_id" => $bank->id,
                 ]);
             }
         // Confirmation message

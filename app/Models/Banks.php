@@ -11,6 +11,6 @@ class Banks extends Model {
     protected $fillable = ["bank_name","headquarters", "number_of_branches", "countries_with_branches"];
     // Relationship tether to Blogs
     public function blogs() {
-        return $this->hasMany(Blogs_stored::class, 'bank_id', "bank_name");
+        return $this->hasMany(Blogs_stored::class, 'bank_id', "id");
         }
     }
