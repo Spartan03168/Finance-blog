@@ -129,12 +129,9 @@
             edit_button.style.cursor = "pointer";
             // Add listener
             edit_button.addEventListener("click", () => {
-                // Populate the form with the selected blog's data
-                document.getElementById("blog-id").value = blog.id; // Hidden input for blog ID
-                document.getElementById("title").value = blog.title; // Title input
-                document.getElementById("content").value = blog.content; // Content textarea
-                document.getElementById("date").value = blog.date.replace(" ", "T");
-            });
+                const edit_url = "{{ route("PostEditor.edit", ":id" ) }}".replace(":id", blogs.id);
+                window.location.href = edit_url;
+                });
             // You forgot to append the button here!
             blog_containment.appendChild(edit_button);
         });
