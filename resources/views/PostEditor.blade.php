@@ -1,4 +1,9 @@
-<div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post editor mode</title>
+</head>
     <!-- Styling section -->
     <style>
         /* Background logic */
@@ -53,40 +58,22 @@
             }
     </style>
 
-    <!-- CRUD container -->
-    <div class="crud-containment">
-        <h2>Edit or create blog posts</h2>
-        <!-- Add/edit form -->
-        <form class="crud-form" id="blog-form" method="POST" action="{{ route("blog.storeOrUpdate") }}}">
+    <body>
+        <form action="{{ route('blog.storeOrUpdate') }}" method="POST">
             @csrf
-            <input type="hidden" id="blog-id" name="id" value="">
-            <!-- Title -->
-            <label for="title">Post title</label>
-            <input type="text" id="title" name="title" placeholder="Enter the title" required>
-            <!-- Content -->
+            <input type="hidden" name="id" value="{{ $blog_post->id }}">
+            <label for="title">Post Title:</label>
+            <input type="text" id="title" name="title" value="{{ $blog_post->title }}" required>
+            <br>
             <label for="content">Content:</label>
-            <textarea id="content" name="content" placeholder="Write your blog post content here." required></textarea>
-            <!-- Current UTC datetime auto-selection using laravel infrastructure -->
-            <label for="Datetime of post"></label>
-            <input type="datetime-local" name="date_and_time_of_upload"
-                   value="{{ now()->setTimezone('UTC')->format('Y-m-d\TH:i') }}">
-            <!-- Submit button -->
-            <button type="submit">Save post</button>
+            <textarea id="content" name="content" required>{{ $blog_post->content }}</textarea>
+            <br>
+            <label for="date_and_time_of_upload">Date and Time:</label>
+            <input type="datetime-local" id="date_and_time_of_upload" name="date_and_time_of_upload"
+                   value="{{ $blog_post->date_and_time_of_upload->format('Y-m-d\TH:i') }}" required>
+            <br>
+            <button type="submit">Update Post</button>
         </form>
-    </div>
+    </body>
+</html>
 
-    <!-- Header -->
-    <header>Post editor mode</header>
-
-    <!-- Forms usage to apply CRUD -->
-    <!-- Columns: Post title, Date and time of upload, Content -->
-    <!-- CRUD deployment -->
-    <script>
-        // Database access point
-        const real_blogs = @json($posts_data);
-        // Editing process of existing post
-        const blog_list = document.getElementById("blog-items");
-
-    </script>
-
-</div>
