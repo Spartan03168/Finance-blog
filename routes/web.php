@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\IntroPage;
 use \App\Http\controllers\BlogPage;
 use \App\Http\controllers\PostEditor;
+use \App\Http\controllers\Intermediate;
 use \App\Http\controllers\CRUD_interface_link;
 
 Route::get('/', function () {
@@ -22,10 +23,19 @@ Route::middleware('auth')->group(function () {
     });
 require __DIR__.'/auth.php';
 
+// --- Custom authentication process
+Route::middleware('auth')->group(function () {
+    Route::get('/blog', [BlogPage::class, 'index'])->name('blog.index');
+    Route::get("/edit", [PostEditor::class, 'index'])->name('post.index');
+    Route::get("/checkpoint", [Intermediate::class, 'index'])->name('Intermediate.index');
+    });
+
 // ---- Custom routing ----
+Route::get("/", function () {return view("welcome"); });
 Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomePage.index");
 Route::get("/blog", [BlogPage::class, "index"]) -> name("Blog.index");
 Route::get("/edit_mode", [PostEditor::class, "index"]) -> name("PostEditor.index");
+Route::get("/checkpoint", [Intermediate::class, "index"]) -> name("Intermediate.index");
 // -----------------------
 
 // ---- CRUD routing components ----
