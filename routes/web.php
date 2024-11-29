@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 // ---- Custom routing ----
 Route::get("/", function () {return view("welcome"); });
 Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomePage.index");
-Route::get("/blog", [BlogPage::class, "index"]) -> name("Blog.index");
+Route::get("/blog", [BlogPage::class, "index"]) -> name("BlogView");
 Route::get("/edit_mode", [PostEditor::class, "index"]) -> name("PostEditor.index");
 Route::get("/checkpoint", [Intermediate::class, "index"]) -> name("Intermediate.index");
 // -----------------------

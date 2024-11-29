@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Intermediate extends Controller {
     public function index(){
-        if (Auth::check()) {
-            return redirect()->route("BlogView");
-            }
-        // Page render
-        return redirect()->route('login');
+        return view("Intermediate");
         }
     }
