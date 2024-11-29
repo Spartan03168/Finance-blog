@@ -64,3 +64,9 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// ---- User clearance level ----
+// User-only routes
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/create_post', [PostEditor::class, 'create'])->name('post.create');
+    });
