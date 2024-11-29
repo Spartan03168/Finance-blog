@@ -59,21 +59,26 @@
     </style>
 
     <body>
-        <form action="{{ route('blog.storeOrUpdate') }}" method="POST">
-            @csrf
-            <input type="hidden" name="id" value="{{ $blog_post->id }}">
-            <label for="title">Post Title:</label>
-            <input type="text" id="title" name="title" value="{{ $blog_post->title }}" required>
-            <br>
-            <label for="content">Content:</label>
-            <textarea id="content" name="content" required>{{ $blog_post->content }}</textarea>
-            <br>
-            <label for="date_and_time_of_upload">Date and Time:</label>
-            <input type="datetime-local" id="date_and_time_of_upload" name="date_and_time_of_upload"
-                   value="{{ $blog_post->date_and_time_of_upload->format('Y-m-d\TH:i') }}" required>
-            <br>
-            <button type="submit">Update Post</button>
-        </form>
+    <form action="{{ route('blog.storeOrUpdate') }}" method="POST">
+        @csrf
+        @if(isset($blog_post))
+            @method('PUT')
+        @endif
+
+        <input type="hidden" name="id" value="{{ $blog_post->id ?? '' }}">
+        <label for="title">Post Title:</label>
+        <input type="text" id="title" name="title" value="{{ $blog_post->title ?? '' }}" required>
+        <br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required>{{ $blog_post->content ?? '' }}</textarea>
+        <br>
+        <label for="date">Date and Time:</label>
+        <input type="datetime-local" id="date" name="date"
+               value="{{ isset($blog_post->date) ? $blog_post->date->format('Y-m-d\TH:i') : '' }}" required>
+        <br>
+        <button type="submit">Update Post</button>
+    </form>
+
     </body>
 </html>
 
