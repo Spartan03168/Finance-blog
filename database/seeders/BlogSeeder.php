@@ -30,6 +30,7 @@ class BlogSeeder extends Seeder {
                 "title" => $row["Post title"],
                 "content" => $row["Content"],
                 "date" => $row["Date and time of upload"],
+                "bank_id" => $row["Bank connection"],
                 ]);
             }
         // Confirmation message
