@@ -7,6 +7,9 @@ Progress:
     - Email services                                       <=
         - Link to successfully creating  your account      <=
     - CRUD                                                 <= QUEUED
+    - Role assignment middleware
+        - Admin has god mode                               <=
+        - Normal users can post                            <=
 
 Notes:
     - Up next is model linking and CRUD
