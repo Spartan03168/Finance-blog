@@ -70,3 +70,12 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/create_post', [PostEditor::class, 'create'])->name('post.create');
     });
+// Admin level god mode
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/posts', [CRUD_interface_link::class, 'index'])->name('admin.posts.index'); // View all posts
+    Route::get('/admin/posts/create', [CRUD_interface_link::class, 'create_mode'])->name('admin.posts.create'); // Create post
+    Route::post('/admin/posts/store', [CRUD_interface_link::class, 'store'])->name('admin.posts.store'); // Store post
+    Route::get('/admin/posts/edit/{id}', [CRUD_interface_link::class, 'update_mode'])->name('admin.posts.edit'); // Edit post
+    Route::post('/admin/posts/update/{id}', [CRUD_interface_link::class, 'update'])->name('admin.posts.update'); // Update post
+    Route::delete('/admin/posts/delete/{id}', [CRUD_interface_link::class, 'delete_mode'])->name('admin.posts.delete'); // Delete post
+});
