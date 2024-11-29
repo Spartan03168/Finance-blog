@@ -8,8 +8,8 @@ Progress:
         - Link to successfully creating  your account      <=
     - CRUD                                                 <= QUEUED
     - Role assignment middleware
-        - Admin has god mode                               <=
-        - Normal users can post                            <=
+        - Admin has god mode                               <= DONE
+        - Normal users can post                            <= DONE
 
 Notes:
     - Up next is model linking and CRUD
