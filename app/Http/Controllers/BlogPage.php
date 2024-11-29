@@ -22,12 +22,12 @@ class BlogPage extends Controller{
                 $posts_data = Blogs_stored::orderBy('date_and_time_of_upload', 'desc')->get();
             } elseif ($cache_mode === 1) {
                 // Posts data caching
-                $posts_data = Cache::remember("posts_data",now()->addMinutes(10), function (){
+                $posts_data = Cache::remember("posts_data",now()->addMinutes(5), function (){
                     return Blogs_stored::orderby('date_and_time_of_upload', 'desc')->get();
                     });
                 // ------------------
                 // Bank data caching
-                $bank_data = Cache::remember("bank_data", now()->addMinutes(10), function (){
+                $bank_data = Cache::remember("bank_data", now()->addMinutes(5), function (){
                     return Banks::all();
                     });
                 }
