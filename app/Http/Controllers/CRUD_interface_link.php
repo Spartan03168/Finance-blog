@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Blogs_stored;
 use Illuminate\Http\Request;
 
-class CRUD_interface_link extends Controller
-{
-    public function edit_mode($id){
+class CRUD_interface_link extends Controller {
+    public function edit_mode($id) {
         // ---> Edit mode <---
         $post_data = Blogs_stored::findOrFail($id);
         return view("PostEditor", compact("post_data"));
         }
 
-    public function update_mode(Request $request, $id){
+    public function update_mode(Request $request, $id) {
         // ---> Update mode <---
         $validatedData = $request->validate([
             'id' => 'required|exists:blogs_stored,id',
@@ -28,10 +27,10 @@ class CRUD_interface_link extends Controller
         return redirect()->route("BlogView")->with("success", "Blog updated successfully");
         }
 
-    public function delete_mode($id){
+    public function delete_mode($id) {
         // ---> Delete mode <---
         $post_data = Blogs_stored::findOrFail($id);
         $post_data->delete();
         return redirect()->route("BlogView")->with("success", "Blog deleted successfully");
         }
-}
+    }
