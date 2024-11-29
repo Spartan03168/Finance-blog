@@ -2,35 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Blogs_stored;
 use Illuminate\Http\Request;
 
 class CRUD_interface_link extends Controller {
-    public function edit_mode($id) {
-        // ---> Edit mode <---
-        $post_data = Blogs_stored::findOrFail($id);
-        return view("PostEditor", compact("post_data"));
+    // ---------------------------------
+    public function create_mode() {
+        return view("PostEditor");
         }
-
-    public function update_mode(Request $request, $id) {
-        // ---> Update mode <---
-        $validatedData = $request->validate([
-            'id' => 'required|exists:blogs_stored,id',
-            'title' => 'required|string|max:255',
-            'content' => 'required',
-            'date_and_time_of_upload' => 'required|date',
+    // ---------------------------------
+    public function store(Request $request) {
+        DB::insert('INSERT INTO blogs (post_title, content, date_and_time_of_upload) VALUES (?, ?, ?)', [
+            $request->input('title'),
+            $request->input('content'),
+            $request->input('date_and_time_of_upload'),
             ]);
-        // Track post by ID
-        $post_tracked = Blogs_stored::findOrFail($validatedData["id"]);
-        $post_tracked->update($validatedData);
-        // Return the redirect
-        return redirect()->route("BlogView")->with("success", "Blog updated successfully");
+        return redirect()->route('BlogView')->with('success', 'Post created successfully.');
         }
-
+    // ---------------------------------
+    public function update_mode(Request  $request, $id) {
+        // ---> Update mode <---
+        DB::update('UPDATE blogs SET post_title = ?, content = ?, date_and_time_of_upload = ? WHERE id = ?', [
+            $request->input('title'),
+            $request->input('content'),
+            $request->input('date_and_time_of_upload'),
+            $id,
+            ]);
+        return redirect()->route('BlogView')->with('success', 'Post updated successfully.');
+        }
+    // ---------------------------------
     public function delete_mode($id) {
         // ---> Delete mode <---
-        $post_data = Blogs_stored::findOrFail($id);
-        $post_data->delete();
+        DB::delete('DELETE FROM blogs WHERE id = ?', [$id]);
         return redirect()->route("BlogView")->with("success", "Blog deleted successfully");
+            }
         }
-    }
