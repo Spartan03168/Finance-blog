@@ -29,11 +29,14 @@ Route::get("/edit_mode", [PostEditor::class, "index"]) -> name("PostEditor.index
 // -----------------------
 
 // ---- CRUD routing components ----
-// > Editing <
-Route::get("edit_posts/{id}", [CRUD_interface_link::class, "edit"])->name("PostEditor.edit");
-Route::post("update_posts", [CRUD_interface_link::class, "update"])->name("PostEditor.update");
-// > Creation of posts <
-Route::get("create_posts", [CRUD_interface_link::class, "create"])->name("PostEditor.create");
-Route::post("store_posts", [CRUD_interface_link::class, "store"])->name("PostEditor.store");
-// > Delete <
-Route::delete("delete_post/{id}", [CRUD_interface_link::class, "delete"])->name("PostEditor.delete");
+// > Creation mode <
+Route::get("/create_posts", [CRUD_interface_link::class, "create_mode"])->name("PostEditor.create");
+// > Storage mode <
+Route::post("/store_posts", [CRUD_interface_link::class, "store"])->name("PostEditor.store");
+// > Edit mode <
+Route::get("/edit_posts/{id}", [CRUD_interface_link::class, "update_mode"])->name("PostEditor.edit");
+// > Update mode <
+Route::post("/update_posts/{id}", [CRUD_interface_link::class, "update"])->name("PostEditor.update");
+// > Deletion mode <
+Route::delete("/delete_post/{id}", [CRUD_interface_link::class, "delete_mode"])->name("PostEditor.delete");
+
