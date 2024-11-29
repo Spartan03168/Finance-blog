@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Blogs_stored extends Model{
@@ -11,4 +10,9 @@ class Blogs_stored extends Model{
     protected $casts = [
         "date_and_time_of_upload" => "datetime",
         ];
+
+    // Relationship connection to blogs
+    public function bank(){
+        return $this->belongsTo(Blogs_stored::class, "bank_id", "ban_name");
+        }
     }
