@@ -1,0 +1,9 @@
+Progress:
+    - Views                                                <= DONE
+    - Models                                               <= DONE
+        - Link both models                                 <=
+    - Caching                                              <= DONE
+    - Authorization                                        <= DONE
+    - Email services                                       <=
+        - Link to successfully creating  your account      <=
+    - CRUD                                                 <=
