@@ -40,7 +40,12 @@
     </style>
 </head>
 <body>
+<!-- New post -->
+<button onclick="window.location.href='{{ route('PostEditor.create') }}';" style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Add new post
+</button>
 
+<!-- Logout button -->
 <form method="POST" action="{{ route('logout') }}">
     @csrf
     <button type="submit" class="status-button" id="status-button">
