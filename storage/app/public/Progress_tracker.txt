@@ -2,11 +2,16 @@ Progress:
     - Views                                                <= DONE
     - Models                                               <= DONE
         - Link both models                                 <= DONE
+        - Bank and posts link confirmation                 <=
     - Caching                                              <= DONE
     - Authorization                                        <= DONE
     - Email services                                       <=
         - Link to successfully creating  your account      <=
     - CRUD                                                 <= QUEUED
+        - Reading     <= CONFIRMED
+        - Creating    <=
+        - Updating    <=
+        - Deleting    <=
     - Role assignment middleware
         - Admin has god mode                               <= DONE
         - Normal users can post                            <= DONE
