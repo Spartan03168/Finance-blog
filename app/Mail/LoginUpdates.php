@@ -29,8 +29,11 @@ class LoginUpdates extends Mailable {
             Mail::to(Auth::user()->email)->send(new LoginNotification());
 
             return redirect()->intended('dashboard');
-                }
-            }
+        }
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
     /**
      * Get the message envelope.
      */
