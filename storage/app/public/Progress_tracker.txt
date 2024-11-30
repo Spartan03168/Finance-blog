@@ -3,7 +3,6 @@ Progress:
     - Models                                               <= DONE
         - Link both models                                 <= DONE
         - Bank and posts link confirmation                 <= DONE
-    - Caching                                              <= DONE
     - Authorization                                        <= DONE
     - Email services                                       <=
         - Link to successfully creating  your account      <=

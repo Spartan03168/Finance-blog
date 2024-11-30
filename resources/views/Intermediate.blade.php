@@ -30,6 +30,6 @@
 
         <a href="{{ route("register") }}">Register</a>
     @endauth
-    <a href="{{ route("Blog.index") }}">View blog</a>
+    <a href="{{ route("blog.index") }}">View blog</a>
     </body>
 </div>
