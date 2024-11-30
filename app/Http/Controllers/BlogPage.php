@@ -9,16 +9,14 @@ use App\Models\Blogs_stored;
 
 class BlogPage extends Controller{
 
-    public function store(Request $request) {
-        $validatedData = $request->validate ([
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'bank_id' => 'required|exists:banks,id',
-            ]);
+    public function index() {
+        $posts = Blogs_stored::with('bank')->get();
+        return view('blogs.index', compact('posts'));
+        }
 
-        Blogs_stored::create($validatedData);
-
-        return redirect()->route('Blog.index')->with('success', 'Post created successfully.');
+    public function create() {
+        $banks = Banks::all();
+        return view('blogs.create', compact('banks'));
         }
 
     public function update(Request $request, $id) {
@@ -33,6 +31,17 @@ class BlogPage extends Controller{
         return redirect()->route('Blog.index')->with('success', 'Post updated successfully.');
         }
 
+    public function store(Request $request) {
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'bank_id' => 'required|exists:banks,id',
+        ]);
+
+        Blogs_stored::create($validated);
+        return redirect()->route('blogs.index')->with('success', 'Post created successfully.');
+        }
+
     public function delete($id) {
         $blog = Blogs_stored::findOrFail($id);
         $blog->delete();
@@ -40,26 +49,9 @@ class BlogPage extends Controller{
         return redirect()->route('Blog.index')->with('success', 'Blog deleted successfully.');
         }
 
-    public function index() {
-        // --- Caching process of posts data ---
-        $cache_mode = 1;
-        // Caching activation selection block
-        if ($cache_mode === 0){
-            $bank_data = Banks::all();
-            $posts_data = Blogs_stored::orderBy('date_and_time_of_upload', 'desc')->get();
-        } elseif ($cache_mode === 1) {
-            // Posts data caching
-            $posts_data = Cache::remember("posts_data",now()->addMinutes(5), function (){
-                return Blogs_stored::orderby('date_and_time_of_upload', 'desc')->get();
-                });
-            // ------------------
-            // Bank data caching
-            $bank_data = Cache::remember("bank_data", now()->addMinutes(5), function (){
-                return Banks::all();
-                });
-                }
-            // --- Return process post(Potentially post caching) ---
-            return view('BlogView', compact('bank_data', 'posts_data'));
-            }
-
+    public function edit($id) {
+        $post = Blogs_stored::findOrFail($id);
+        $banks = Banks::all();
+        return view('blogs.edit', compact('post', 'banks'));
+        }
     }
