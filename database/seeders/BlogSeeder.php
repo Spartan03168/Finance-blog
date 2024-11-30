@@ -26,15 +26,26 @@ class BlogSeeder extends Seeder {
         foreach ($data as $row){
             $row = array_combine($headers_detected, $row);
 
+            $smooth_option = 1;
+            if ($smooth_option === 1) {
+                // Fetch bank by name
+                $bank = Banks::where('bank_name', $row["Bank_id"])->first();
+            } else {
+                // The hammer
+                $bank_Name = trim($row["Bank_id"]);
+                $bank = Banks::where('bank_name', $bank_Name)->first();
+
+                }
             // Fetch bank by name
-            $bank = Banks::where('bank_name', $row["bank_id"])->first();
+
+            //
 
             // Transfer into database
             DB::table("blogs")->insert([
-                "title" => $row["Post title"],
-                "date" => $row["Date and time of upload"],
-                "content" => $row["Content"],
-                "bank_id" => $bank->id,
+                "title" => $row["title"],
+                "date" => $row["date_and_time_of_upload"],
+                "content" => $row["content"],
+                "bank_id" => $row["Bank_id"],
                 ]);
             }
         // Confirmation message

@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder{
             'email' => 'test@example.com',
             ]);
         // --- Blog seeder protocol ---
-        $this->call(BlogSeeder::class);
         $this->call(BankSeeder::class);
+        $this->call(BlogSeeder::class);
         $this->call(BaselineAdminSeeder::class);
         }
     }

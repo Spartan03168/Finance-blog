@@ -14,8 +14,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('content');
             $table->timestamp('date');
-            $table->unsignedBigInteger('bank_id'); // Foreign key for banks
-            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
+            $table->string('bank_id');
             $table->timestamps();
         });
         }
