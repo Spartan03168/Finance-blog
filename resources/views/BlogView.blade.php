@@ -41,7 +41,7 @@
 </head>
 <body>
 <!-- New post -->
-<button onclick="window.location.href='{{ route('PostEditor.create') }}';" style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+<button onclick="window.location.href='{{ route('blog.create') }}';" style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
     Add new post
 </button>
 
@@ -141,7 +141,7 @@
             edit_button.style.cursor = "pointer";
             // Add listener
             edit_button.addEventListener("click", () => {
-                const edit_url = "{{ route("PostEditor.edit", ":id" ) }}".replace(":id", blogs.id);
+                const edit_url = "/blogs/${blog.id}/edit";
                 window.location.href = edit_url;
                 });
             // You forgot to append the button here!
