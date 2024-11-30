@@ -141,7 +141,7 @@
             edit_button.style.cursor = "pointer";
             // Add listener
             edit_button.addEventListener("click", () => {
-                const edit_url = "/blogs/${blog.id}/edit";
+                const edit_url = "blog.edit";
                 window.location.href = edit_url;
                 });
             // You forgot to append the button here!

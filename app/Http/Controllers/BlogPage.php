@@ -39,7 +39,7 @@ class BlogPage extends Controller{
             ]);
 
         Blogs_stored::create($validated);
-        return redirect()->route('blogs.index')->with('success', 'Post created successfully.');
+        return redirect()->route('blogs.store')->with('success', 'Post created successfully.');
         }
 
     public function delete($id) {
