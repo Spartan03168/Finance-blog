@@ -10,9 +10,9 @@ use App\Models\Blogs_stored;
 class BlogPage extends Controller{
 
     public function index() {
-        $posts = Blogs_stored::with('bank')->get();
+        $posts = Cache::remember('posts_with_banks', 60, function () {
+            return Blogs_stored::with('bank')->get();
+            });
         return view('blog.index', compact('posts'));
         }
-
-
     }
