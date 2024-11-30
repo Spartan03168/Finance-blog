@@ -32,11 +32,11 @@ class BlogPage extends Controller{
         }
 
     public function store(Request $request) {
-        $validated = $request->validate([
+        $validated = $request->validate ([
             'title' => 'required|max:255',
             'content' => 'required',
             'bank_id' => 'required|exists:banks,id',
-        ]);
+            ]);
 
         Blogs_stored::create($validated);
         return redirect()->route('blogs.index')->with('success', 'Post created successfully.');
