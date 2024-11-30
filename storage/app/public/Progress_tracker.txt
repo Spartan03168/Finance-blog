@@ -1,20 +1,27 @@
 Progress:
     - Views                                                <= DONE
     - Models                                               <= DONE
+    - Caching                                              <= DONE + UPGRADED
         - Link both models                                 <= DONE
         - Bank and posts link confirmation                 <= DONE
     - Authorization                                        <= DONE
-    - Email services                                       <=
-        - Link to successfully creating  your account      <=
-    - CRUD                                                 <= QUEUED
+    - Email services                                       <= DONE
+        - Link to successfully creating your account       <= DONE
+        - Link it to logging in                            <= DONE
+    - CRUD                                                 <= Broken
         - Reading     <= CONFIRMED
         - Creating    <=
         - Updating    <=
         - Deleting    <=
     - Role assignment middleware
         - Admin has god mode                               <= DONE
-        - Normal users can post                            <= DONE
+        - Normal users can post                            <= Scrapped due to bugs so everyone is in god mode.
 
 Notes:
     - Up next is model linking and CRUD
     - Right after that set up the email service to send an update to my personal email.
+
+Dev notes
+- Routing is a mess so the blog page is unreachable. I cant test the crud even if I get to be there in the code.
+- I am just going to finish out this list untested as much as possible up to my 15:00 which is your 09:00.
+- No idea what I will get, but mentally I already accepted failure.
