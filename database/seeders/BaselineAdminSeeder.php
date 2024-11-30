@@ -13,7 +13,7 @@ class BaselineAdminSeeder extends Seeder {
             "name" => "Angel of death",
             "email" => "angel_of_death@gmail.com",
             "password" => Hash::make("angel_of_death"),
-            "is_admin" => true
+            "role" => "admin"
             ]);
         }
     }

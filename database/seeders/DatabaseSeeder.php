@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder{
         // --- Blog seeder protocol ---
         $this->call(BlogSeeder::class);
         $this->call(BankSeeder::class);
+        $this->call(BaselineAdminSeeder::class);
         }
     }
