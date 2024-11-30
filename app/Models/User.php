@@ -21,7 +21,8 @@ class User extends Authenticate
         'name',
         'email',
         'password',
-        "is_admin"
+        "is_admin",
+        "role",
     ];
 
     /**
