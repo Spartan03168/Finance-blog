@@ -47,7 +47,7 @@ Route::get("/edit_mode", [PostEditor::class, "index"]) -> name("PostEditor.index
 Route::get("/checkpoint", [Intermediate::class, "index"]) -> name("Intermediate.index");
 // -----------------------
 
-// ---- CRUD routing components ----
+// ---- CRUD routing components(Purge scheduled) ----
 // > Creation mode <
 Route::get("/create_posts", [CRUD_interface_link::class, "create_mode"])->name("PostEditor.create");
 // > Storage mode <
@@ -70,22 +70,25 @@ Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // ---- User clearance level ----
-// User-only routes
-Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/create_post', [PostEditor::class, 'create'])->name('post.create');
+// Non-admin blog routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/blogs', [BlogPage::class, 'index'])->name('blog.index');
+    Route::get('/blogs/create', [BlogPage::class, 'create'])->name('blog.create');
+    Route::post('/blogs', [BlogPage::class, 'store'])->name('blogs.store');
+    Route::get('/blogs/{id}/edit', [BlogPage::class, 'edit'])->name('blog.edit');
+    Route::put('/blogs/{id}', [BlogPage::class, 'update'])->name('blog.update');
+    Route::delete('/blogs/{id}', [BlogPage::class, 'delete'])->name('blog.delete');
     });
-// Admin level god mode clearance
+
+// Admin-only routes. Has more access.
 Route::middleware(['auth', 'admin'])->group(function () {
-    // -> Viewing <-
-    Route::get('/admin/posts', [CRUD_interface_link::class, 'index'])->name('admin.posts.index');
-    // -> Creation <-
-    Route::get('/admin/posts/create', [CRUD_interface_link::class, 'create_mode'])->name('admin.posts.create');
-    // -> Storage <-
-    Route::post('/admin/posts/store', [CRUD_interface_link::class, 'store'])->name('admin.posts.store');
-    // -> Editing <-
-    Route::get('/admin/posts/edit/{id}', [CRUD_interface_link::class, 'update_mode'])->name('admin.posts.edit');
-    // -> Updating <-
-    Route::post('/admin/posts/update/{id}', [CRUD_interface_link::class, 'update'])->name('admin.posts.update');
-    // -> Deletion <-
-    Route::delete('/admin/posts/delete/{id}', [CRUD_interface_link::class, 'delete_mode'])->name('admin.posts.delete'); // Delete post
+    Route::get('/admin/blogs', [BlogPage::class, 'adminIndex'])->name('admin.blogs.index');
     });
+
+// --- Eliquent ORM mechanisms ---
+Route::get('/blogs', [BlogPage::class, 'index'])->name('Blog.index');
+Route::get('/blogs/create', [BlogPage::class, 'create'])->name('blog.create');
+Route::post('/blogs', [BlogPage::class, 'store'])->name('blog.store');
+Route::get('/blogs/{id}/edit', [BlogPage::class, 'edit'])->name('blog.edit');
+Route::put('/blogs/{id}', [BlogPage::class, 'update'])->name('blog.update');
+Route::delete('/blogs/{id}', [BlogPage::class, 'delete'])->name('blog.delete');
