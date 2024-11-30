@@ -27,11 +27,7 @@ class BlogSeeder extends Seeder {
             $row = array_combine($headers_detected, $row);
 
             // Fetch bank by name
-            $bank = Banks::where('bank_name', $row['Bank connection'])->first();
-            if (!$bank) {
-                $this->command->error("Bank not found: " . $row['Bank connection']);
-                continue;
-                }
+            $bank = Banks::where('bank_name', $row["bank_id"])->first();
 
             // Transfer into database
             DB::table("blogs")->insert([
