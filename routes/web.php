@@ -8,6 +8,7 @@ use \App\Http\Controllers\IntroPage;
 use \App\Http\controllers\BlogPage;
 use \App\Http\controllers\PostEditor;
 use \App\Http\controllers\Intermediate;
+use \App\Models\Blogs_stored;
 use \App\Http\controllers\CRUD_interface_link;
 
 Route::get('/', function () {
@@ -57,6 +58,9 @@ Route::get("/edit_posts/{id}", [CRUD_interface_link::class, "update_mode"])->nam
 Route::post("/update_posts/{id}", [CRUD_interface_link::class, "update"])->name("PostEditor.update");
 // > Deletion mode <
 Route::delete("/delete_post/{id}", [CRUD_interface_link::class, "delete_mode"])->name("PostEditor.delete");
+
+// ---- Specific blog routing
+Route::post("/blog", [Blogs_stored::class, "storeOrUpdate"])->name("PostEditor.store");
 
 // ---- Authentication routing ----
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
