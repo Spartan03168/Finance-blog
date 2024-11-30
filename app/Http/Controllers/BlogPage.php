@@ -13,7 +13,7 @@ class BlogPage extends Controller{
         $validatedData = $request->validate ([
             'title' => 'required|max:255',
             'content' => 'required',
-            'bank_id' => 'required|exists:banks,id', // Ensure the bank exists
+            'bank_id' => 'required|exists:banks,id',
             ]);
 
         Blogs_stored::create($validatedData);
