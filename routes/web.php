@@ -13,7 +13,7 @@ use \App\Http\controllers\CRUD_interface_link;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// ---- Web middleware ----
 Route::middleware(['web'])->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // --- Custom authentication process
-Route::get("/welcome_page", [IntroPage::class, "index"])->name("WelcomePage.index");
+Route::get("/welcome_page", [IntroPage::class, "index"])->name("WelcomeView");
 Route::middleware('auth')->group(function () {
     Route::get("/checkpoint", [Intermediate::class, 'index'])->name('Intermediate.index');
     Route::get('/blog', [BlogPage::class, 'index'])->name('blog.index');
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
 // ---- Custom routing ----
 Route::get("/", function () {return view("welcome"); });
-Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomePage.index");
+Route::get("/welcome_page",[IntroPage::class,"index"]) -> name("WelcomeView");
 Route::get("/blog", [BlogPage::class, "index"]) -> name("BlogView");
 Route::get("/edit_mode", [PostEditor::class, "index"]) -> name("PostEditor.index");
 Route::get("/checkpoint", [Intermediate::class, "index"]) -> name("Intermediate.index");
@@ -70,12 +70,18 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/create_post', [PostEditor::class, 'create'])->name('post.create');
     });
-// Admin level god mode
+// Admin level god mode clearance
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/posts', [CRUD_interface_link::class, 'index'])->name('admin.posts.index'); // View all posts
-    Route::get('/admin/posts/create', [CRUD_interface_link::class, 'create_mode'])->name('admin.posts.create'); // Create post
-    Route::post('/admin/posts/store', [CRUD_interface_link::class, 'store'])->name('admin.posts.store'); // Store post
-    Route::get('/admin/posts/edit/{id}', [CRUD_interface_link::class, 'update_mode'])->name('admin.posts.edit'); // Edit post
-    Route::post('/admin/posts/update/{id}', [CRUD_interface_link::class, 'update'])->name('admin.posts.update'); // Update post
+    // -> Viewing <-
+    Route::get('/admin/posts', [CRUD_interface_link::class, 'index'])->name('admin.posts.index');
+    // -> Creation <-
+    Route::get('/admin/posts/create', [CRUD_interface_link::class, 'create_mode'])->name('admin.posts.create');
+    // -> Storage <-
+    Route::post('/admin/posts/store', [CRUD_interface_link::class, 'store'])->name('admin.posts.store');
+    // -> Editing <-
+    Route::get('/admin/posts/edit/{id}', [CRUD_interface_link::class, 'update_mode'])->name('admin.posts.edit');
+    // -> Updating <-
+    Route::post('/admin/posts/update/{id}', [CRUD_interface_link::class, 'update'])->name('admin.posts.update');
+    // -> Deletion <-
     Route::delete('/admin/posts/delete/{id}', [CRUD_interface_link::class, 'delete_mode'])->name('admin.posts.delete'); // Delete post
-});
+    });

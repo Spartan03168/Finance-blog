@@ -40,12 +40,14 @@
     </style>
 </head>
 <body>
-@auth
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="status-button" id="status-button">Logout</button>
-    </form>
-@endauth
+
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit" class="status-button" id="status-button">
+        Logout
+    </button>
+</form>
+
 <h1>Financial Blog</h1>
 <div id="bank-container"></div>
 <div id="blog-container"></div>

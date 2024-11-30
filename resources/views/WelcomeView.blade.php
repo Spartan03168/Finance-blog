@@ -123,7 +123,7 @@
     <!-- Integration of button -->
     <button class="toggle-button" onclick="dark_mode()">Dark mode activation</button>
     <!-- Redirect to logistical routing page -->
-    <a href="{{ route('Intermediate') }}" class="logistic-redirect">
+    <a href="{{ route('Intermediate.index') }}" class="logistic-redirect">
         Enter
     </a>
 </div>
