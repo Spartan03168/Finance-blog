@@ -1,7 +1,7 @@
 Progress:
     - Views                                                <= DONE
     - Models                                               <= DONE
-        - Link both models                                 <= QUEUED
+        - Link both models                                 <= DONE
     - Caching                                              <= DONE
     - Authorization                                        <= DONE
     - Email services                                       <=
